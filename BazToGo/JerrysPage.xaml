@@ -4,27 +4,29 @@
              xmlns:local="clr-namespace:BazToGo.ViewModels"
              x:Class="BazToGo.JerrysPage">
 
-    <ListView ItemsSource="{Binding ItemsList}"  Grid.Column="0">
-        <ListView.BindingContext>
-            <local:JerrysPageViewModel/>
-        </ListView.BindingContext>
+
+    <ContentPage.BindingContext>
+        <local:JerrysPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView x:Name="JerrysPageViewModel"
+            ItemsSource="{Binding ItemsList}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*" />
-                        <ColumnDefinition Width="0.2*" />
-                        <ColumnDefinition Width="0.3*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Price}"
-                               FontAttributes="Bold" />
-                    <Label Grid.Column="1"
-                               Text="{Binding Name}" />
-                    <Label Grid.Column="2"
-                               Text="{Binding picture}"
-                               HorizontalTextAlignment="End" />
-                </Grid>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" >
+
+                        <Image Source="{Binding Picture}" HorizontalOptions="Start"/>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text = "{Binding Name}"/>
+                            <Label Text = "{Binding Price}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+                
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+
+
 </ContentPage>

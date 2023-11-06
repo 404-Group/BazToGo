@@ -1,17 +1,18 @@
-﻿using BazToGo.ViewModels;
-using BazToGo.Model;
+﻿using BazToGo.Model;
+using BazToGo.ViewModels;
 
 namespace BazToGo
 {
     public partial class JerrysPage : ContentPage
     {
-        public IList<Items> ItemsList { get; set; }
-        JerrysPageViewModel viewModel;
         public JerrysPage()
         {
+
             InitializeComponent();
-            viewModel = new JerrysPageViewModel();
+            BindingContext = new JerrysPageViewModel();
 
         }
+
+        public static IList<Items> ItemsSource { get; internal set; }
     }
 }
