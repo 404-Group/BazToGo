@@ -1,9 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BazToGo.ViewModels"
              x:Class="BazToGo.JerrysPage">
-    
-    <StackLayout>
-        <Label Text="Jerrys"/>
-    </StackLayout>
+
+    <ListView ItemsSource="{Binding ItemsList}"  Grid.Column="0">
+        <ListView.BindingContext>
+            <local:JerrysPageViewModel/>
+        </ListView.BindingContext>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Price}"
+                               FontAttributes="Bold" />
+                    <Label Grid.Column="1"
+                               Text="{Binding Name}" />
+                    <Label Grid.Column="2"
+                               Text="{Binding picture}"
+                               HorizontalTextAlignment="End" />
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

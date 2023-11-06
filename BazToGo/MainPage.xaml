@@ -6,15 +6,13 @@
 
     <Grid RowSpacing="8"
           ColumnSpacing="8"
-          Padding="8"
+          Padding="10"
           RowDefinitions="175, 175, 125"
           ColumnDefinitions="*,*">
-
         <BoxView Color="Green" >
             <BoxView.GestureRecognizers>
-                <TapGestureRecognizer Tapped="JerrysTap"
-                            NumberOfTapsRequired="1" />
-            </BoxView.GestureRecognizers> />
+                <TapGestureRecognizer Tapped="JerrysTap"/>
+            </BoxView.GestureRecognizers> 
         </BoxView>
         <Label Text="Jerry's"
                HorizontalOptions="Center"
@@ -26,7 +24,7 @@
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="WWTap"
                 NumberOfTapsRequired="1" />
-            </BoxView.GestureRecognizers> />
+            </BoxView.GestureRecognizers> 
         </BoxView>
         <Label   Grid.RowSpan="1"
                  Grid.Column="1"
@@ -38,7 +36,7 @@
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="SlimsTap"
                 NumberOfTapsRequired="1" />
-            </BoxView.GestureRecognizers> />
+            </BoxView.GestureRecognizers> 
         </BoxView>
         <Label Grid.Row="1"
                Text="Slim's"
@@ -50,7 +48,7 @@
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="SushiTap"
                 NumberOfTapsRequired="1" />
-            </BoxView.GestureRecognizers> />
+            </BoxView.GestureRecognizers> 
         </BoxView>
         <Label Grid.Row="1"
                Grid.Column="1"
@@ -63,7 +61,7 @@
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="SBTap"
                 NumberOfTapsRequired="1" />
-            </BoxView.GestureRecognizers> />
+            </BoxView.GestureRecognizers> 
         </BoxView>
         <Label Grid.Row="2"
                Grid.ColumnSpan="2"
