@@ -34,9 +34,9 @@ namespace BazToGo.ViewModels
             }
         }
         [RelayCommand]
-        private void RemoveFromCart(int productId)
+        private void RemoveFromCart(string name)
         {
-            var item = CartItems.FirstOrDefault(c => c.ProductId == productId);
+            var item = CartItems.FirstOrDefault(c => c.Name == name);
             if (item is not null)
             {
                 if (item.Quantity == 1)

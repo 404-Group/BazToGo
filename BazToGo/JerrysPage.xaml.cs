@@ -1,7 +1,5 @@
 ﻿using BazToGo.ViewModels;
 using BazToGo.Model;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BazToGo
@@ -35,11 +33,11 @@ namespace BazToGo
         }
 
         [RelayCommand]
-        private void AddToCart(string name) =>
+        public void AddToCart(string name) =>
             AddRemoveCartClicked?.Invoke(this, new ProductCartItemChangeEventArgs(name, 1));
 
         [RelayCommand]
-        private void RemoveFromCart(string name) =>
+        public void RemoveFromCart(string name) =>
             AddRemoveCartClicked?.Invoke(this, new ProductCartItemChangeEventArgs(name, -1));
     
     void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -53,9 +53,9 @@
                 <DataTemplate>
                     <StackLayout>
                         <Button   Text="Add"
-                                  Command="{Binding Source={x:Type local:JerrysPageViewModel}, Path=AddToCartCommand}"
-                                  CommandParameter="{Binding Name}">
-                        </Button>
+                                  BindingContext="{Binding Source = {local:CartPageViewModel}}"
+                                  Clicked="AddToCart">
+                        </Button>   
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.FooterTemplate>

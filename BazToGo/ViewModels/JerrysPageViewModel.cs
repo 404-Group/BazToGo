@@ -11,7 +11,6 @@ namespace BazToGo.ViewModels
         public Items selectedItem { get; set; }
         ObservableCollection<Items> items = new ObservableCollection<Items>();
         public ObservableCollection<Items> ItemsList { get { return items; } }
-        readonly ObservableCollection<Items> CartItems;
         public ICommand AddToCart { private set; get; }
     public JerrysPageViewModel() {
             CreateItems();
