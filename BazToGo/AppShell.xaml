@@ -17,6 +17,7 @@
                  ContentTemplate="{DataTemplate local:CartPage}" />
 
     </FlyoutItem>
+    
 
 
 </Shell>

@@ -1,22 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BazToGo.ViewModels"
              x:Class="BazToGo.CartPage">
+   <ContentPage.BindingContext>
+        <local:CartPageViewModel/>
+    </ContentPage.BindingContext>       
+    <Grid>
+        <CollectionView ItemsSource="{Binding CartItems}"
+                        ItemsLayout="VerticalGrid, 2"
+                        
+                        Margin="5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid RowDefinitions="auto,30,50,1"
+                          ColumnDefinitions="*,70"
+                          Margin="0,4,0,0">
+                            <Frame
+                               Padding="3"
+                               Grid.ColumnSpan="2"
+                                Margin="8">
+                                <Image Source="{Binding Picture}"
+                               Aspect="AspectFill"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                            </Frame>
+                            <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="Start"
+                               Text="{Binding Name}"
+                                   Margin="5"/>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+                            <Label  Text="{Binding Price}"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Margin="5"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-            <Label
-                Text="Cart Page"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        </CollectionView>
+    </Grid>
 
-
-        </VerticalStackLayout>
-    </ScrollView>
 
 </ContentPage>
