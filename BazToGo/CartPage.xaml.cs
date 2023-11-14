@@ -10,9 +10,23 @@ namespace BazToGo
         public CartPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            viewModel = new CartPageViewModel();
+            BindLabel();
         }
+        private void BindLabel()
+        {
+            Binding totalBind = new Binding();
+            totalBind.Source = viewModel.Total;
+            totalLbl.SetBinding(Label.TextProperty,totalBind);
+        }
+        void DeliveryCheck()
+        {
 
+        }
+        void PickupCheck() 
+        { 
+        
+        }
         public static ObservableCollection<Items> ItemsSource { get; internal set; }
     }
 }

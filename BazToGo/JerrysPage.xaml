@@ -52,9 +52,10 @@
             <CollectionView.FooterTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Button   Text="Add"
-                                  BindingContext="{Binding Source = {local:CartPageViewModel}}"
-                                  Clicked="AddToCart">
+                        <Button   VerticalOptions="End"
+                                  Text="Add to Cart"
+                                  Command="{Binding Source = {local:JerrysPageViewModel}, Path=AddToCart}"
+                                  CommandParameter="{Binding selectedItem}">
                         </Button>   
                     </StackLayout>
                 </DataTemplate>

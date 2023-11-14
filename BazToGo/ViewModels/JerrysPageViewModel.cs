@@ -9,7 +9,7 @@ namespace BazToGo.ViewModels
     public class JerrysPageViewModel
     {
         public Items selectedItem { get; set; }
-        ObservableCollection<Items> items = new ObservableCollection<Items>();
+        public ObservableCollection<Items> items = new ObservableCollection<Items>();
         public ObservableCollection<Items> ItemsList { get { return items; } }
         public ICommand AddToCart { private set; get; }
     public JerrysPageViewModel() {
@@ -30,10 +30,7 @@ namespace BazToGo.ViewModels
                     Price = 4.99,
                     Picture = "gcheese.png"
                 });
-
             }
-            
-        
         }
     }
     

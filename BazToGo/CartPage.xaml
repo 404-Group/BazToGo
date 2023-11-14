@@ -5,44 +5,105 @@
              x:Class="BazToGo.CartPage">
    <ContentPage.BindingContext>
         <local:CartPageViewModel/>
-    </ContentPage.BindingContext>       
-    <Grid>
-        <CollectionView ItemsSource="{Binding CartItems}"
-                        ItemsLayout="VerticalGrid, 2"
-                        
-                        Margin="5">
+    </ContentPage.BindingContext>
+    <Grid
+        RowDefinitions="*,.3*,.1*,.1*,0,.15*"
+        ColumnDefinitions="*">
+        <CollectionView
+            ItemsSource="{Binding CartItems}"
+            Grid.Row="0">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
-                        <Grid RowDefinitions="auto,30,50,1"
-                          ColumnDefinitions="*,70"
-                          Margin="0,4,0,0">
-                            <Frame
-                               Padding="3"
-                               Grid.ColumnSpan="2"
-                                Margin="8">
-                                <Image Source="{Binding Picture}"
-                               Aspect="AspectFill"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
-                            </Frame>
-                            <Label Grid.Row="1"
-                               Grid.ColumnSpan="2"
-                               HorizontalOptions="Start"
-                               Text="{Binding Name}"
-                                   Margin="5"/>
-
-                            <Label  Text="{Binding Price}"
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    HorizontalOptions="End"
-                                    Margin="5"/>
-                        </Grid>
-                    </StackLayout>
+                    <Frame CornerRadius="0">
+                        <HorizontalStackLayout Spacing="29">
+                            <Image Source="{Binding Image}"  
+                                   Aspect="AspectFill"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="40"/>
+                            <Label Text="{Binding Name}"
+                                   FontSize="18"    
+                                   Margin="5,8,5,0"/>
+                            <Label Text="{Binding Price}" 
+                                   FontSize="18"    
+                                   Margin="5,8,5,0"/>
+                            <Label Text="{Binding Quantity}"
+                                   FontSize="18"    
+                                   Margin="5,8,5,0"/>
+                            <Label Text="{Binding Amount}"
+                                   FontSize="18"    
+                                   Margin="5,8,5,0"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout>
+                        <Label Text="No items in cart."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+            
         </CollectionView>
+
+        <Frame CornerRadius="0"
+               Padding="0"
+               HorizontalOptions="Fill"
+               Grid.Row="2">
+            <HorizontalStackLayout Spacing="40">
+                <Label Text="Phone Number: "
+                       Margin="10,11,0,11"
+                       FontAttributes="Bold"
+                       Padding="0"/>
+                <Entry Keyboard="Numeric"
+                       Placeholder="999-999-9999"/>
+            </HorizontalStackLayout>
+        </Frame>
+        <VerticalStackLayout Grid.Row="1">
+            <HorizontalStackLayout 
+                   HorizontalOptions="End">
+                <Label Text="Total : "/>
+                <Label x:Name="totalLbl"
+                   Text="{Binding Total}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <Frame
+            CornerRadius="0"
+            Padding="0"
+            HorizontalOptions="Fill"
+            Grid.Row="3">
+            <HorizontalStackLayout Spacing="40">
+                <Label Text="Select Order type:"
+                       Margin="10,11,0,0"
+                       FontAttributes="Bold"
+                       Padding="0"/>
+                <RadioButton Content="Pickup"/>
+                <RadioButton Content="Delivery"/>
+                
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame  CornerRadius="0"
+                Padding="0"
+                Margin="0"
+                HorizontalOptions="Fill"
+                Grid.Row="4">
+            <HorizontalStackLayout >
+                <Editor Margin="0" 
+                        Keyboard="Default"
+                        HeightRequest="300"
+                        AutoSize="Disabled"/>
+            </HorizontalStackLayout>
+        </Frame>
+        <Button Text="Checkout"
+                CornerRadius="0"
+                Grid.Row="5"/>
     </Grid>
 
 
