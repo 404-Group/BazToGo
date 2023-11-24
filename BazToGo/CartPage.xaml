@@ -7,7 +7,7 @@
         <local:CartPageViewModel/>
     </ContentPage.BindingContext>
     <Grid
-        RowDefinitions="*,.3*,.1*,.1*,0,.15*"
+        RowDefinitions="*,.3*,.1*,.1*,.3*,.15*"
         ColumnDefinitions="*">
         <CollectionView
             ItemsSource="{Binding CartItems}"
@@ -15,40 +15,54 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame CornerRadius="0">
-                        <HorizontalStackLayout Spacing="29">
-                            <Image Source="{Binding Image}"  
-                                   Aspect="AspectFill"
+                        <Grid RowDefinitions="*"
+                              ColumnDefinitions=".2*,.5*,.2*,.2*,.2*">
+                            <Image Source="{Binding Image}" 
+                                   Aspect="AspectFit"
+                                   VerticalOptions="Center"
+                                   HeightRequest="50"
+                                   Grid.Column="0"
+                                   />
+                            <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                       Padding="0,6"
+                                   Margin="8,0"
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding Price}" 
+                                   FontSize="18" 
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"
-                                   HeightRequest="40"/>
-                            <Label Text="{Binding Name}"
-                                   FontSize="18"    
-                                   Margin="5,8,5,0"/>
-                            <Label Text="{Binding Price}" 
-                                   FontSize="18"    
-                                   Margin="5,8,5,0"/>
+                                   Grid.Column="2"/>
                             <Label Text="{Binding Quantity}"
-                                   FontSize="18"    
-                                   Margin="5,8,5,0"/>
+                                   FontSize="18" 
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Grid.Column="3"/>
                             <Label Text="{Binding Amount}"
-                                   FontSize="18"    
-                                   Margin="5,8,5,0"/>
-                        </HorizontalStackLayout>
+                                   FontSize="18"  
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="End"
+                                   Grid.Column="4"/>
+                           
+                           
+                        </Grid>
                     </Frame>
                     
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
-                <ContentView>
-                    <StackLayout>
+                <StackLayout>
+                    <ContentView>
                         <Label Text="No items in cart."
                            Margin="10,25,10,10"
                            FontAttributes="Bold"
                            FontSize="18"
                            HorizontalOptions="Fill"
                            HorizontalTextAlignment="Center" />
-                    </StackLayout>
-                </ContentView>
+                    </ContentView>
+                </StackLayout>
             </CollectionView.EmptyView>
             
         </CollectionView>
@@ -100,6 +114,23 @@
                         HeightRequest="300"
                         AutoSize="Disabled"/>
             </HorizontalStackLayout>
+        </Frame>
+        <Frame Grid.Row="4"
+               Padding="0"
+               CornerRadius="0">
+            <Grid RowDefinitions="*"
+                  ColumnDefinitions=".1*,.3*">
+                <Label Text="Delivery Instructions: "
+                       Grid.Column="0"
+                       
+               Margin="10,11,0,0"
+                FontAttributes="Bold"
+                Padding="0"/>
+                <Editor Grid.Column="1">
+                
+                
+                </Editor>
+            </Grid>
         </Frame>
         <Button Text="Checkout"
                 CornerRadius="0"

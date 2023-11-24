@@ -11,9 +11,9 @@ namespace BazToGo
         {
             InitializeComponent();
             viewModel = new CartPageViewModel();
-            BindLabel();
+            BindTotalLabel();
         }
-        private void BindLabel()
+        private void BindTotalLabel()
         {
             Binding totalBind = new Binding();
             totalBind.Source = viewModel.Total;
