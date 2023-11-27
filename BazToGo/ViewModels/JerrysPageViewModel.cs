@@ -1,4 +1,5 @@
 ﻿using BazToGo.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ namespace BazToGo.ViewModels
     {
         public string Name { get; set; }
         public int Count { get; set; }
+        
+
 
         public ProductCartItemChangeEventArgs(string name, int count)
         {
@@ -19,29 +22,43 @@ namespace BazToGo.ViewModels
             Count = count;
         }
     }
-    public partial class JerrysPageViewModel
+
+    public partial class JerrysPageViewModel:ObservableObject
     {
         public Items selectedItem { get; set; }
         public ObservableCollection<Items> items = new ObservableCollection<Items>();
+        private readonly CartPageViewModel _cartViewModel;
 
-        public event EventHandler<ProductCartItemChangeEventArgs> AddRemoveCartClicked;
-        public ICommand AddToCart{ private set; get; }
+        [ObservableProperty]
+        private int _cartCount;
+        public ObservableCollection<Items> ItemsList { get { return items; } }
+
 
         [RelayCommand]
-        public void RemoveFromCart(string name) =>
-            AddRemoveCartClicked?.Invoke(this, new ProductCartItemChangeEventArgs(name, -1));
+        private void AddToCart(Items item) => UpdateCart(item, 1);
+        [RelayCommand]
+        private void RemoveFromCart(Items item) => UpdateCart(item, -1);
+        private void UpdateCart(Items product, int count)
+        {
+            var item = ItemsList.FirstOrDefault(x => x.Name == product.Name);
+            if (item != null)
+            {
+                item.cartQuantity += count;
+                if (count == -1)
+                {
+                    _cartViewModel.RemoveFromCartCommand.Execute(product.Name);
+                }
+                else { 
+                    _cartViewModel.AddToCartCommand.Execute(product);
+                }
 
-        public ObservableCollection<Items> ItemsList { get { return items; } }
-    public JerrysPageViewModel() {
+                CartCount = _cartViewModel.Count; 
+            }
+        }
+        public JerrysPageViewModel() {
             CreateItems();
 
             JerrysPage.ItemsSource = items;
-
-            AddToCart = new Command<string>(
-                    execute: (string name) =>
-                {
-                    AddRemoveCartClicked?.Invoke(this, new ProductCartItemChangeEventArgs(name, 1));
-                });
 
             void CreateItems() {
                 items.Add(new Items
@@ -56,8 +73,11 @@ namespace BazToGo.ViewModels
                     Price = 4.99,
                     Image = "gcheese.png"
                 });
+
             }
+            
         }
+        
     }
     
 }

@@ -12,19 +12,15 @@ namespace BazToGo.ViewModels
     public partial class CartPageViewModel : ObservableObject
     {
         public ObservableCollection<CartItem> CartItems { get; set; } = new();
-        public event EventHandler<ProductCartItemChangeEventArgs> AddRemoveCartClicked;
-
-
+        
         [ObservableProperty]
         private int _count;
         [ObservableProperty]
         private double _total;
-        
         [RelayCommand]
      
         public void AddToCart(Items product)
         {
-            double total = 0;
             var item = CartItems.FirstOrDefault(c => c.Name == product.Name);
             if (item is not null)
             {
@@ -34,17 +30,19 @@ namespace BazToGo.ViewModels
             {
                 item = new CartItem
                 {
+                    Id = Guid.NewGuid(),
                     Name = product.Name,
+                    ProductId = product.id,
                     Quantity = 1,
                     Price = product.Price,
                     Image = product.Image
                 };
                 CartItems.Add(item);
-                Count = CartItems.Count;
-            }
-            for (int i = 0; i < CartItems.Count; i++)
-            {
-                total = total + CartItems[i].Amount;
+                for(int i=0;i<CartItems.Count;i++)
+                {
+                    Count += CartItems[i].Quantity;
+                }
+
             }
         }
         [RelayCommand]
@@ -56,49 +54,42 @@ namespace BazToGo.ViewModels
                 if (item.Quantity == 1)
                 {
                     CartItems.Remove(item);
-                    Count = CartItems.Count;
-                    
+                    for (int i = 0; i < CartItems.Count; i++)
+                    {
+                        Count += CartItems[i].Quantity;
+                    }
                 }
+
                 else
                 {
                     item.Quantity--;
                 }
             }
-            for (int i = 0; i < CartItems.Count; i++)
-            {
-                Total = Total + CartItems[i].Amount;
-            }
         }
         public CartPageViewModel() {
-            
 
-            var product = new Items {
-                Name = "Burger",
-                quantity = 1,
-                Price = 4.99,
-                Image = "burger.png"
-            };
+
             var product2 = new Items
             {
+                id = 1,
                 Name = "Grilled Cheese",
-                quantity = 1,
                 Price = 4.99,
                 Image = "gcheese.png"
             };
             var product3 = new Items
             {
-                Name = "Grilled Cheese",
-                quantity = 1,
+                id =2,
+                Name = "Burger",
                 Price = 4.99,
-                Image = "gcheese.png"
+                Image = "Burger.png"
             };
-            AddToCart(product); 
             AddToCart(product2);
             AddToCart(product3);
-            for (int i = 0; i < CartItems.Count; i++)
-            {
+            AddToCart(product2);
+            for (int i = 0; i < CartItems.Count; i++) {
                 Total = Total + CartItems[i].Amount;
             }
+            
         }
 
         

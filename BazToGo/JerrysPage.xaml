@@ -2,67 +2,125 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BazToGo.ViewModels"
-             x:Class="BazToGo.JerrysPage">
+             x:Class="BazToGo.JerrysPage"
+             xmlns:controls="clr-namespace:BazToGo.Controls">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="CartBtn">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="Button" x:Key="AddToCartBtn">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
 
-
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <local:JerrysPageViewModel />
     </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <StackLayout>
+            <Label  Text="Jerry's Diner"
+                    TextColor="White"
+                    
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="50"
+                    FontSize="Medium"
+                    Grid.Row="0"/>
+            <controls:CartControl Count="{Binding CartCount}"/>
+        </StackLayout>
+    </Shell.TitleView>
     <Grid>
-        
         <CollectionView 
-                Footer="{Binding .}"
-                ItemsSource="{Binding ItemsList}"
-            SelectedItem="{Binding selectedItem}"
-                SelectionMode="Single"
-                SelectionChanged="OnCollectionViewSelectionChanged"
-                        ItemsLayout="VerticalGrid, 2"
-                        Margin="5">
+         ItemsSource="{Binding ItemsList}"
+         
+         SelectedItem="SelectedItem"
+         SelectionMode="Single"
+         SelectionChanged="OnCollectionViewSelectionChanged"
+         ItemsLayout="VerticalGrid, 2"
+         Margin="0"
+     Grid.Row="1">
+
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
                     <StackLayout>
-                        <Grid RowDefinitions="auto,30,50,1"
-                          ColumnDefinitions="*,*"
-                          Margin="0,4,0,0">
-                            <Frame
-                               Padding="3"
-                               Grid.ColumnSpan="2"
-                                Margin="8">
-                                <Image Source="{Binding Image}"
-                               Aspect="AspectFill"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
-                            </Frame>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                              Value="LightSkyBlue" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid RowDefinitions="175, Auto, Auto, Auto"
+                   ColumnDefinitions="*,*"
+                   Margin="0,4,0,0">
+                            <Image Source="{Binding Image}"
+                        
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Grid.ColumnSpan="2"
+                            Margin="5"/>
                             <Label Grid.Row="1"
-                               Grid.ColumnSpan="2"
-                               HorizontalOptions="Start"
-                               Text="{Binding Name}"
-                                   Margin="5"/>
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Start"
+                        Text="{Binding Name}"
+                            Margin="5"/>
 
                             <Label  Text="{Binding Price}"
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    HorizontalOptions="End"
-                                    Margin="5"/>
+                             Grid.Row="1"
+                             Grid.Column="2"
+                             HorizontalOptions="End"
+                             Margin="5"/>
 
                         </Grid>
+                        <Border Grid.Column="0"
+                             IsVisible="True"
+                             StrokeShape="RoundRectangle 6"
+                             StrokeThickness="1"
+                             Stroke="{StaticResource Primary}">
+
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                              Binding="{Binding CartQuantity}"
+                                              Value="0">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+                                <Button Grid.Column="0"
+                            Text="-"
+                            Style="{StaticResource CartBtn}"
+                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductControls}}, Path=RemoveFromCartCommand}"
+                            CommandParameter="{Binding id}"/>
+                                <Label Grid.Column="1" 
+                                       Text="{Binding Quantity}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Button Grid.Column="2"
+                                Text="+"
+                                Style="{StaticResource CartBtn}"
+                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductControls}}, Path=AddToCartCommand}"
+                            CommandParameter="{Binding id}"/>
+                            </Grid>
+                        </Border>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            <CollectionView.FooterTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Button   VerticalOptions="End"
-                                  Text="Add to Cart"
-                                  x:Name="AddToCartButton"
-                                  Command="{Binding Source={x:Type local:CartPageViewModel},Path=AddToCart}"
-                                  CommandParameter="{Binding Name}">
-                        </Button>   
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.FooterTemplate>
         </CollectionView>
     </Grid>
-
 
 </ContentPage>

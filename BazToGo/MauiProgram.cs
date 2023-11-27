@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BazToGo.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace BazToGo
 {
@@ -14,7 +15,9 @@ namespace BazToGo
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddSingleton<JerrysPageViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<CartPageViewModel>();
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

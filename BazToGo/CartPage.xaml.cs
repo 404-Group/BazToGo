@@ -18,6 +18,7 @@ namespace BazToGo
             Binding totalBind = new Binding();
             totalBind.Source = viewModel.Total;
             totalLbl.SetBinding(Label.TextProperty,totalBind);
+
         }
         void DeliveryCheck()
         {
