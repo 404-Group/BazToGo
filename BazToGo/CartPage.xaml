@@ -117,15 +117,16 @@
         </Frame>
         <Frame Grid.Row="4"
                Padding="0"
-               CornerRadius="0">
+               CornerRadius="0"
+               >
             <Grid RowDefinitions="*"
                   ColumnDefinitions=".1*,.3*">
                 <Label Text="Delivery Instructions: "
-                       Grid.Column="0"
                        
-               Margin="10,11,0,0"
-                FontAttributes="Bold"
-                Padding="0"/>
+                       Grid.Column="0"
+                       Margin="10,11,0,0"
+                        FontAttributes="Bold"
+                        Padding="0"/>
                 <Editor Grid.Column="1">
                 
                 

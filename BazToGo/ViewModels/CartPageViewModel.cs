@@ -1,4 +1,5 @@
-﻿using BazToGo.Model;
+﻿using BazToGo.dtos;
+using BazToGo.Model;
 using BazToGo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -21,7 +22,7 @@ namespace BazToGo.ViewModels
      
         public void AddToCart(Items product)
         {
-            var item = CartItems.FirstOrDefault(c => c.Name == product.Name);
+            var item = CartItems.FirstOrDefault(c => c.ProductId == product.id);
             if (item is not null)
             {
                 item.Quantity++;
@@ -46,9 +47,9 @@ namespace BazToGo.ViewModels
             }
         }
         [RelayCommand]
-        private void RemoveFromCart(string name)
+        private void RemoveFromCart(int productId)
         {
-            var item = CartItems.FirstOrDefault(c => c.Name == name);
+            var item = CartItems.FirstOrDefault(c => c.ProductId == productId);
             if (item is not null)
             {
                 if (item.Quantity == 1)
@@ -62,30 +63,12 @@ namespace BazToGo.ViewModels
 
                 else
                 {
-                    item.Quantity--;
+                    item.Quantity--;;
                 }
             }
         }
         public CartPageViewModel() {
 
-
-            var product2 = new Items
-            {
-                id = 1,
-                Name = "Grilled Cheese",
-                Price = 4.99,
-                Image = "gcheese.png"
-            };
-            var product3 = new Items
-            {
-                id =2,
-                Name = "Burger",
-                Price = 4.99,
-                Image = "Burger.png"
-            };
-            AddToCart(product2);
-            AddToCart(product3);
-            AddToCart(product2);
             for (int i = 0; i < CartItems.Count; i++) {
                 Total = Total + CartItems[i].Amount;
             }

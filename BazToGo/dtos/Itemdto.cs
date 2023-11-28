@@ -16,13 +16,13 @@ namespace BazToGo.dtos
         [ObservableProperty]
         private string? _image;
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public string Unit { get; set; }
         public short CategoryId { get; set; }
 
         [ObservableProperty]
         private int _cartQuantity;
-        public Itemdto(int id, string name, string? image, decimal price, string unit, short categoryId)
+        public Itemdto(int id, string name, string? image, double price, string unit, short categoryId)
         {
             Id = id;
             Name = name;

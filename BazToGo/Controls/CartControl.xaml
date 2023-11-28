@@ -8,7 +8,8 @@
             BackgroundColor="Red"
                     HorizontalOptions="End"
                     VerticalOptions="End"
-            Padding="20">
+            Padding="10"
+            Margin="0,20,0,0">
         <Label x:Name="countlbl"
             Text="{Binding Count}"/>
     </Border>

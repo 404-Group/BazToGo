@@ -25,7 +25,6 @@ public partial class ProductControls : ContentView
 
     public Items selectedItem { get; set; }
     public ObservableCollection<Items> Items = new ObservableCollection<Items>();
-    private readonly JerrysPageViewModel _jerryPageViewModel;
     public ObservableCollection<Items> ItemsList { get { return Items; } }
     public static readonly BindableProperty ProductsProperty =
         BindableProperty.Create(nameof(ItemsList), typeof(ObservableCollection<Items>), typeof(ProductControls),0);
