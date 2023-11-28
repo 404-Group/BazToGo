@@ -11,27 +11,7 @@ namespace BazToGo
             BindableProperty.Create(nameof(Items), typeof(IEnumerable<Items>), typeof(Items), Enumerable.Empty<Items>());
         public JerrysPage()    
         {
-            CreateItems();
-
-
-            void CreateItems()
-            {
-                ItemsSource.Add(new Items
-                {
-                    id = 1,
-                    Name = "Burger",
-                    Price = 4.99,
-                    Image = "burger.png"
-                }); ;
-                ItemsSource.Add(new Items
-                {
-                    id = 2,
-                    Name = "Grilled Cheese",
-                    Price = 4.99,
-                    Image = "gcheese.png"
-                });
-
-            }
+           
             InitializeComponent();
         }
         

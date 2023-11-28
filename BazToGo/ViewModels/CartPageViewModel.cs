@@ -13,13 +13,13 @@ namespace BazToGo.ViewModels
     public partial class CartPageViewModel : ObservableObject
     {
         public ObservableCollection<CartItem> CartItems { get; set; } = new();
-        
+
         [ObservableProperty]
         private int _count;
         [ObservableProperty]
         private double _total;
         [RelayCommand]
-     
+
         public void AddToCart(Items product)
         {
             var item = CartItems.FirstOrDefault(c => c.ProductId == product.id);
@@ -39,7 +39,7 @@ namespace BazToGo.ViewModels
                     Image = product.Image
                 };
                 CartItems.Add(item);
-                for(int i=0;i<CartItems.Count;i++)
+                for (int i = 0; i < CartItems.Count; i++)
                 {
                     Count += CartItems[i].Quantity;
                 }
@@ -63,7 +63,7 @@ namespace BazToGo.ViewModels
 
                 else
                 {
-                    item.Quantity--;;
+                    item.Quantity--; ;
                 }
             }
         }
@@ -72,15 +72,13 @@ namespace BazToGo.ViewModels
             for (int i = 0; i < CartItems.Count; i++) {
                 Total = Total + CartItems[i].Amount;
             }
-            
+
         }
-
-        
-
         private void ClearCart()
         {
             CartItems.Clear();
             Count = 0;
         }
-    }
-}
+        
+        
+    } }

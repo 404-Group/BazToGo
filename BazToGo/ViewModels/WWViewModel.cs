@@ -50,16 +50,16 @@ namespace BazToGo.ViewModels
                 items.Add(new Items
                 {
                     id = 1,
-                    Name = "Burger",
+                    Name = "Boba",
                     Price = 3.99,
-                    Image = "burger.png"
+                    Image = "boba.png"
                 }); ;
                 items.Add(new Items
                 {
                     id = 2,
-                    Name = "Grilled Cheese",
+                    Name = "California Roll",
                     Price = 3.99,
-                    Image = "gcheese.png"
+                    Image = "croll.png"
                 });
 
             }

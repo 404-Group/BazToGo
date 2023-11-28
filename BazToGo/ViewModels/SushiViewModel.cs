@@ -9,21 +9,7 @@ using System.Xml.Linq;
 
 namespace BazToGo.ViewModels
 {
-    public class ProductCartItemChangeEventArgs : EventArgs
-    {
-        public string Name { get; set; }
-        public int Count { get; set; }
-        
-
-
-        public ProductCartItemChangeEventArgs(string name, int count)
-        {
-            Name = name;
-            Count = count;
-        }
-    }
-
-    public partial class JerrysPageViewModel:ObservableObject
+    public partial class SushiViewModel:ObservableObject
     {
         public Items SelectedItem { get; set; }
         public ObservableCollection<Items> items = new ObservableCollection<Items>();
@@ -40,7 +26,8 @@ namespace BazToGo.ViewModels
         private void RemoveFromCart(Items item) => UpdateCart(item, -1);
         private void UpdateCart(Items product, int count)
         {
-            var item = ItemsList.FirstOrDefault(p => p.id == product.id);
+            int productId = product.id;
+            var item = ItemsList.FirstOrDefault(p => p.id == productId);
             if (item != null)
             {
                 item.cartQuantity += count;
@@ -55,7 +42,7 @@ namespace BazToGo.ViewModels
                 CartCount = _cartViewModel.Count; 
             }
         }
-        public JerrysPageViewModel() {
+        public SushiViewModel() {
             CreateItems();
                 JerrysPage.ItemsSource=items;
             void CreateItems()
@@ -63,16 +50,16 @@ namespace BazToGo.ViewModels
                 items.Add(new Items
                 {
                     id = 1,
-                    Name = "Burger",
-                    Price = 4.99,
-                    Image = "burger.png"
+                    Name = "Boba",
+                    Price = 3.99,
+                    Image = "boba.png"
                 }); ;
                 items.Add(new Items
                 {
                     id = 2,
-                    Name = "Grilled Cheese",
-                    Price = 4.99,
-                    Image = "gcheese.png"
+                    Name = "California Roll",
+                    Price = 3.99,
+                    Image = "croll.png"
                 });
 
             }
