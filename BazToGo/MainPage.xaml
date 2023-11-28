@@ -3,7 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BazToGo.MainPage"
              BackgroundColor="#dedede">
-
+    <Shell.TitleView>
+        <StackLayout>
+            <Label  Text="BazToGo"
+                TextColor="White"
+                FontSize="Medium"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Padding="0"
+                    Margin="0,15,0,0"/>
+        </StackLayout>
+    </Shell.TitleView>
     <Grid RowSpacing="8"
           ColumnSpacing="8"
           Padding="10"
@@ -21,8 +31,9 @@
                 <RoundRectangle CornerRadius="5" />
             </Border.StrokeShape>
             <Label Text="Jerry's"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" >
+                   FontSize="22"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" >
         </Label>
         </Border>
         <BoxView Grid.RowSpan="1"

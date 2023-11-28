@@ -3,15 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BazToGo.Controls.CartControl"
               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="this">
+             Title="this"
+              BackgroundColor="#dedede">
     <Border BindingContext="{x:Reference this}"
-            BackgroundColor="Red"
                     HorizontalOptions="End"
                     VerticalOptions="End"
+            BackgroundColor="#dedede"
+             WidthRequest="45"
             Padding="10"
-            Margin="0,20,0,0">
-        <Label x:Name="countlbl"
-            Text="{Binding Count}"/>
+            Margin="0,0,20,0">
+        <Border.StrokeShape>
+            <BoxView CornerRadius="20">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CartTap"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+        </Border.StrokeShape>
+        <Grid HeightRequest="25"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Padding="0"
+              Margin="0"
+              ColumnDefinitions="*"
+              RowDefinitions="*">
+            <Label x:Name="countlbl"
+                     Text="{Binding Count}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+        </Grid>
+        
     </Border>
 
 </ContentPage>

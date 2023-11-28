@@ -9,7 +9,8 @@ using System.Xml.Linq;
 
 namespace BazToGo.ViewModels
 {
-    public partial class SushiViewModel:ObservableObject
+
+    public partial class SlimsViewModel:ObservableObject
     {
         public Items SelectedItem { get; set; }
         public ObservableCollection<Items> items = new ObservableCollection<Items>();
@@ -26,8 +27,7 @@ namespace BazToGo.ViewModels
         private void RemoveFromCart(Items item) => UpdateCart(item, -1);
         private void UpdateCart(Items product, int count)
         {
-            int productId = product.id;
-            var item = ItemsList.FirstOrDefault(p => p.id == productId);
+            var item = ItemsList.FirstOrDefault(p => p.id == product.id);
             if (item != null)
             {
                 item.cartQuantity += count;
@@ -42,17 +42,45 @@ namespace BazToGo.ViewModels
                 CartCount = _cartViewModel.Count; 
             }
         }
-        public SushiViewModel() {
+        public SlimsViewModel() {
             CreateItems();
-                SushiPage.ItemsSource=items;
+                SlimsPage.ItemsSource=items;
             void CreateItems()
             {
                 items.Add(new Items
                 {
-                    id = 2,
-                    Name = "California Roll",
-                    Price = 3.99,
-                    Image = "croll.png"
+                    id = 10,
+                    Name = "Chicks Meal",
+                    Price = 5.99,
+                    Image = "chicks_plate.png"
+                });
+                items.Add(new Items
+                {
+                    id = 10,
+                    Name = "Slims Meal",
+                    Price = 6.99,
+                    Image = "slims_plate.png"
+                }); ;
+                items.Add(new Items
+                {
+                    id = 11,
+                    Name = "Slims Wrap",
+                    Price = 5.99,
+                    Image = "slims_wrap_meal.png"
+                }) ;
+                items.Add(new Items
+                {
+                    id = 11,
+                    Name = "Buffalo Wrap",
+                    Price = 5.99,
+                    Image = "buffalo_wrap_meal.png"
+                });
+                items.Add(new Items
+                {
+                    id = 11,
+                    Name = "Smokey Cheddar Wrap",
+                    Price = 4.99,
+                    Image = "smokey_cheddar_wrap_meal.png"
                 });
 
             }

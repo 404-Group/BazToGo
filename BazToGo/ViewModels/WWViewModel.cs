@@ -44,24 +44,10 @@ namespace BazToGo.ViewModels
         }
         public WWViewModel() {
             CreateItems();
-                JerrysPage.ItemsSource=items;
+                WWPage.ItemsSource=items;
             void CreateItems()
             {
-                items.Add(new Items
-                {
-                    id = 1,
-                    Name = "Boba",
-                    Price = 3.99,
-                    Image = "boba.png"
-                }); ;
-                items.Add(new Items
-                {
-                    id = 2,
-                    Name = "California Roll",
-                    Price = 3.99,
-                    Image = "croll.png"
-                });
-
+                
             }
 
         }

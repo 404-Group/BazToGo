@@ -27,7 +27,7 @@ namespace BazToGo
         _ = (e.CurrentSelection.FirstOrDefault() as Items)?.Name;
     }
 
-    public static IList<Items> ItemsSource { get; internal set; }
+        public static IList<Items> ItemsSource { get; internal set; }
     }
 
  }

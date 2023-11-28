@@ -68,9 +68,53 @@ namespace BazToGo.ViewModels
             }
         }
         public CartPageViewModel() {
+            CreateItems();
+            void CreateItems()
+            {
+                CartItems.Add(new CartItem
+                {
+                    ProductId = 2,
+                    Name = "California Roll",
+                    Price = 3.99,
+                    Image = "croll.png",
+                    Quantity = 1
+                }); ;
+                CartItems.Add(new CartItem
+                {
+                    ProductId = 1,
+                    Name = "Jerry's Burger",
+                    details = "-No Lettuce",
+                    Price = 4.99,
+                    Image = "burger.png",
+                    Quantity = 1
+                });
+                CartItems.Add(new CartItem
+                {
+                    ProductId = 2,
+                    Name = "Slims Meal",
+                    details = "-Honey mustard x2",
+                    Price = 7.99,
+                    Image = "slims_plate.png",
+                    Quantity = 1
+                });
+                CartItems.Add(new CartItem
+                {
+                    ProductId = 5,
+                    Name = "Matcha Green Tea Latte",
+                    details = "-Almond Milk" +
+                    "\n-Vanilla Syrup",
+                    Price = 4.99,
+                    Quantity = 1,
+                    Image = "cup.png"
+                });
 
+            }
             for (int i = 0; i < CartItems.Count; i++) {
                 Total = Total + CartItems[i].Amount;
+            }
+            for (int i = 0; i < CartItems.Count; i++)
+            {
+                Count += CartItems[i].Quantity;
             }
 
         }

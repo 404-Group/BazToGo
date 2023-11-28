@@ -6,6 +6,7 @@
         {
             InitializeComponent();
         }
+        
         async void JerrysTap(object sender, EventArgs args)
         {
             await Shell.Current.GoToAsync(nameof(JerrysPage));

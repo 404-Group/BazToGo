@@ -1,8 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BazToGo.StarbucksPage">
-    
+             x:Class="BazToGo.StarbucksPage"
+             xmlns:controls="clr-namespace:BazToGo.Controls">
+    <Shell.TitleView>
+        <StackLayout>
+            <Label  Text="Starbucks"
+                TextColor="White"
+                
+                VerticalTextAlignment="Center"
+                VerticalOptions="Center"
+                HeightRequest="50"
+                Padding="0"
+                Margin="0,2,0,0"
+                FontSize="Medium"/>
+            <controls:CartControl Count="{Binding CartCount}"/>
+        </StackLayout>
+    </Shell.TitleView>
     <StackLayout>
         <Label Text="Starbucks"/>
     </StackLayout>

@@ -25,7 +25,10 @@ public partial class CartControl : ContentPage
         countlbl.SetBinding(Label.TextProperty, countBind);
 
     }
-    
-    
+    async void CartTap(object sender, EventArgs args)
+    {
+        await Shell.Current.GoToAsync(nameof(CartPage));
+    }
+
 }
     

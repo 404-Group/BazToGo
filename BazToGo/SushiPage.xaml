@@ -27,14 +27,14 @@
     </ContentPage.BindingContext>
     <Shell.TitleView>
         <StackLayout>
-            <Label  Text="Sushi"
+            <Label  Text="Ace's Sushi"
                     TextColor="White"
-                    
                     VerticalTextAlignment="Center"
                     VerticalOptions="Center"
                     HeightRequest="50"
-                    FontSize="Medium"
-                    Grid.Row="0"/>
+                    Padding="0"
+                    Margin="0,2,0,0"
+                    FontSize="Medium"/>
             <controls:CartControl Count="{Binding CartCount}"/>
         </StackLayout>
     </Shell.TitleView>

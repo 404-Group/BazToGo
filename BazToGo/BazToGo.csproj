@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Controls\ProductControls.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="StarbucksPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
