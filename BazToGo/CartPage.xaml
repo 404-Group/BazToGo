@@ -8,15 +8,13 @@
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style TargetType="RadioButton">
-
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CheckedStates">
                         <VisualState x:Name="Checked">
                             <VisualState.Setters>
                                 <Setter Property="TextColor"
-                                        Value="Black" />
-
+                                        Value="Green" />
                                 <Setter Property="Opacity"
                                         Value="1" />
                             </VisualState.Setters>
@@ -24,7 +22,7 @@
                         <VisualState x:Name="Unchecked">
                             <VisualState.Setters>
                                 <Setter Property="TextColor"
-                                        Value="Grey" />
+                                        Value="Red" />
                                 <Setter Property="Opacity"
                                         Value="0.5" />
                             </VisualState.Setters>
@@ -33,10 +31,10 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
-
     </ContentPage.Resources>
-
-    <Grid RowDefinitions="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"
+    
+    <Grid
+        RowDefinitions="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"
         ColumnDefinitions="*">
         <CollectionView
             ItemsSource="{Binding CartItems}"
@@ -118,11 +116,12 @@
                        Padding="0"/>
                 <Picker x:Name="picker"
                         Title="Select payment"
-                        Margin="0"
-                        SelectedItem="{Binding SelectedPayment}"
-                        ItemsSource="{Binding PaymentOptions}"
-                        SelectedIndexChanged="OnSelectedIndexChanged">
-                    
+                        Margin="0">
+                    <Picker.Items>
+                        <x:String>DCB</x:String>
+                        <x:String>Meal T</x:String>
+                        <x:String>Debit/Credit Card</x:String>
+                    </Picker.Items>
                 </Picker>
 
             </HorizontalStackLayout>
@@ -138,8 +137,7 @@
                        Padding="0"/>
                 <Entry Keyboard="Numeric"
                        Placeholder="999-999-9999"
-                       Margin="10,0,0,0"
-                       PropertyChanged="PhoneNumberPropertyChanged"/>
+                       Margin="10,0,0,0"/>
             </HorizontalStackLayout>
 
         </Frame>
@@ -161,8 +159,7 @@
                        FontAttributes="Bold"
                        Padding="0"/>
                 <TimePicker Margin="0"
-                            HorizontalOptions="Center"
-                            PropertyChanged="OnTimeSelected" >
+                            HorizontalOptions="Center">
                     
                 </TimePicker>
             </HorizontalStackLayout>
@@ -179,6 +176,7 @@
                        FontAttributes="Bold"
                        Padding="0"/>
                 <RadioButton Content="Pickup"
+                             IsChecked="True"
                              CheckedChanged="RadioButtonCheckedChanged"
                              x:Name="Pickup"/>
                 <RadioButton Content="Delivery"
@@ -214,8 +212,19 @@
                         FontAttributes="Bold"
                         Padding="0"/>
                 <Editor Grid.Column="1"
-                        x:Name="Instructions"
-                        PropertyChanged="DeliveryInstructionsPropertyChanged">
+                        IsReadOnly="True">
+                    <Editor.Triggers>
+                        <DataTrigger TargetType="Editor"
+                                    Binding="{Binding Source={x:Reference Pickup}}"
+                                    Value="1">
+                            <Setter Property="IsReadOnly" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Editor"
+                                    Binding="{Binding Source={x:Reference Pickup}}"
+                                    Value="0">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                        </DataTrigger>
+                    </Editor.Triggers>
                 </Editor>
                 
             </Grid>
@@ -223,8 +232,7 @@
         </Border>
         <Button Text="Checkout"
                 CornerRadius="0"
-                Grid.Row="7"
-                Clicked="CheckoutButtonClicked"/>
+                Grid.Row="7"/>
     </Grid>
 
 

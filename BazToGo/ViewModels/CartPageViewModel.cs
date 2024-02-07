@@ -1,16 +1,11 @@
 ﻿using BazToGo.dtos;
 using BazToGo.Model;
 using BazToGo.Models;
-using System.IO;
-using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using Microsoft.Maui.Storage;
-using System.Threading;
 
 namespace BazToGo.ViewModels
 {
@@ -19,23 +14,10 @@ namespace BazToGo.ViewModels
     {
         public ObservableCollection<CartItem> CartItems { get; set; } = new();
 
-        public ObservableCollection<string> PaymentOptions { get; set; } = new();
-        
-
         [ObservableProperty]
         private int _count;
         [ObservableProperty]
         private double _total;
-        [ObservableProperty]
-        private string _selectedPayment;
-        [ObservableProperty]
-        private string _phoneNumber;
-        [ObservableProperty]
-        private TimeSpan _selectedTime;
-        [ObservableProperty]
-        private string _orderType;
-        [ObservableProperty]
-        private string _delInstructions;
         [RelayCommand]
 
         public void AddToCart(Items product)
@@ -127,10 +109,6 @@ namespace BazToGo.ViewModels
                 });
 
             }
-
-            PaymentOptions.Add("Meal Trade" );
-            PaymentOptions.Add("DCB");
-            PaymentOptions.Add("Debit/Credit");
             for (int i = 0; i < CartItems.Count; i++) {
                 Total = Total + CartItems[i].Amount;
             }
@@ -138,60 +116,9 @@ namespace BazToGo.ViewModels
             {
                 Count += CartItems[i].Quantity;
             }
-        }
-        
-        public void receipt(string targetFileName)
-        {
-            
-            string testPath = FileSystem.Current.AppDataDirectory;
-            string targetFilePath = System.IO.Path.Combine(testPath, targetFileName);
-            using (var outputStream = System.IO.File.OpenWrite(targetFilePath))
-            using (var writer = new StreamWriter(outputStream))
-            {
-                writer.WriteLine("Items:");
-                for (int i = 0; i < CartItems.Count; i++)
-                {
-                    writer.WriteLine(CartItems[i].Name);
-                    if (CartItems[i].details != null) {
-                        writer.WriteLine(CartItems[i].details);
-                    }
-                }   
-                writer.WriteLine("Name:");
-                writer.WriteLine("John Doe");
-                writer.WriteLine("Payment:");
-                writer.WriteLine(SelectedPayment);
-                writer.WriteLine("Phone Number:");
-                writer.WriteLine(PhoneNumber);
-                writer.WriteLine("Order Time:");
-                writer.WriteLine(SelectedTime);
-                writer.WriteLine("Order Type:");
-                writer.WriteLine(OrderType);
-                if (OrderType == "Delivery")
-                {
-                    writer.WriteLine("Delivery Instructions");
-                    writer.WriteLine(DelInstructions);
-                }
-                writer.Close();
-                outputStream.Close();
-            }
-            
-            ReadText(targetFilePath);
-        }
 
-        public async void ReadText(string docPath)
-        {
-            using (var fileStream = File.OpenRead(docPath))
-            using (var streamReader = new StreamReader(fileStream))
-            {
-                String line;
-                while ((line = streamReader.ReadLine()) != null && line.Length > 1)
-                {
-                    Console.WriteLine(line);
-                }
-
-            }
         }
-            private void clearCart()
+        private void ClearCart()
         {
             CartItems.Clear();
             Count = 0;
