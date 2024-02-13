@@ -18,7 +18,7 @@
         <ShellContent Title="Profile"
                  ContentTemplate="{DataTemplate local:ProfilePage}" />
         <ShellContent Title="BazToYou"
-                 ContentTemplate="{DataTemplate local:CheckoutPage}"/>
+                 ContentTemplate="{DataTemplate local:BazToYouPage}"/>
 
     </FlyoutItem>
     

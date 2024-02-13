@@ -7,7 +7,6 @@
         <StackLayout>
             <Label  Text="BazToYou"
                 TextColor="White"
-                
                 VerticalTextAlignment="Center"
                 VerticalOptions="Center"
                 HeightRequest="50"
@@ -18,8 +17,22 @@
     </Shell.TitleView>
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Where are you headed to?"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Picker
+            Title="Select Destination"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Northeast (Corley, Norman, Jones, Energy Center, University Commons)</x:String>
+                    <x:String>Northwest (Library, Paine, Witherspoon</x:String>
+                    <x:String>Midwest (Turner, Dean, Nutt, Brown [Res Hall], Tucker, M Street, Hughes, Wilson</x:String>
+                    <x:String>Mideast (Doc Bryan, Tucker Coliseum, Rothwell, Brown [Administration], Caraway</x:String>
+                    <x:String>South (Baswell, Williamson, Hull, St. Leo, Church of Christ, Wesley Foundation, Baseball Field)</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
     </VerticalStackLayout>
 </ContentPage>
