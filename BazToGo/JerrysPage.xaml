@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BazToGo.ViewModels"
              x:Class="BazToGo.JerrysPage"
-             xmlns:controls="clr-namespace:BazToGo.Controls"
-             xmlns:dto="clr-namespace:BazToGo.dtos">
+             xmlns:controls="clr-namespace:BazToGo.Controls">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Button" x:Key="CartBtn">
@@ -23,7 +22,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <local:JerrysPageViewModel/>
+        <local:ProductPageViewModel/>
     </ContentPage.BindingContext>
     <Shell.TitleView>
         <StackLayout>
@@ -41,7 +40,9 @@
     </Shell.TitleView>
     <Grid>
         <CollectionView 
-         ItemsSource="{Binding ItemsList}"
+         ItemsSource="{Binding JerrysItemsList}"
+         SelectionMode="Single"
+         SelectedItem="{Binding SelectedItem}"
          ItemsLayout="VerticalGrid, 2"
          Margin="5"
          Grid.Row="1">
@@ -63,77 +64,36 @@
                             <Grid RowDefinitions="175, Auto, Auto, Auto"
                                    ColumnDefinitions="*,*"
                                    Margin="0,4">
-                            <Image Source="{Binding Image}"
+                                <Image Source="{Binding Image}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
                                     Grid.ColumnSpan="2"
                                         Margin="5"/>
-                            <Label Grid.Row="1"
+                                <Label Grid.Row="1"
                                     Grid.ColumnSpan="2"
                                     HorizontalOptions="Start"
                                     Text="{Binding Name}"
                                         Margin="5"/>
 
-                             <Label  Text="{Binding Price}"
+                                <Label  Text="{Binding Price}"
                                         Grid.Row="1"
                                         Grid.Column="2"
                                         HorizontalOptions="End"
                                         Margin="5"/>
 
                             </Grid>
-                            <Button BackgroundColor="#00533E" 
-                                Grid.Column="0"
-                                    Text="Add"
-                                    Style="{StaticResource AddToCartBtn}"
-                                    IsVisible="False"
-                                    Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:JerrysPageViewModel}}, Path=AddToCartCommand}"
-                                     CommandParameter="{Binding SelectedItem}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                                                Binding="{Binding Quantity}"
-                                                Value="0">
-                                        <Setter Property="IsVisible" Value="True"/>
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
-                            <Border Grid.Column="0"
-                                 IsVisible="True"
-                                 StrokeShape="RoundRectangle 6"
-                                 StrokeThickness="1"
-                                 Stroke="#00533E">
-
-                                <Border.Triggers>
-                                    <DataTrigger TargetType="Border"
-                                                  Binding="{Binding Quantity}"
-                                                  Value="0">
-                                        <Setter Property="IsVisible" Value="False"/>
-                                    </DataTrigger>
-                                </Border.Triggers>
-
-                                <Grid ColumnDefinitions="Auto, *, Auto">
-                                    <Button Grid.Column="0"
-                                            Text="-"
-                                            Style="{StaticResource CartBtn}"
-                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:JerrysPageViewModel}}, Path=RemoveFromCartCommand}"
-                                            CommandParameter="{Binding SelectedItem}"
-                                            BackgroundColor="#00533E"/>
-                                    <Label Grid.Column="1" 
-                                            Text="{Binding Quantity}"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center"/>
-                                    <Button Grid.Column="2"
-                                            Text="+"
-                                            Style="{StaticResource CartBtn}"
-                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:JerrysPageViewModel}}, Path=AddToCartCommand}"
-                                            CommandParameter="{Binding SelectedItem}"
-                                            BackgroundColor="#00533E"/>
-                                </Grid>
-                            </Border>
-                        </StackLayout >
+                        </StackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button Grid.Column="0"
+                 Text="Add"
+                 Style="{StaticResource AddToCartBtn}"
+                 IsVisible="True"
+                 Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:ProductPageViewModel}}, Path=AddToCartCommand}"
+                  CommandParameter="{Binding SelectedItem}">
+        </Button>
     </Grid>
 
 </ContentPage>

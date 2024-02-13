@@ -11,6 +11,7 @@
             Routing.RegisterRoute(nameof(SushiPage), typeof(SushiPage));
             Routing.RegisterRoute(nameof(StarbucksPage), typeof(StarbucksPage));
             Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
+            Routing.RegisterRoute(nameof(CheckoutPage), typeof(CheckoutPage)); ;
             InitializeComponent();
         }
     }

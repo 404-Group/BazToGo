@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:BazToGo.ViewModels"
              x:Class="BazToGo.CartPage">
    <ContentPage.BindingContext>
-        <local:CartPageViewModel/>
+        <local:ProductPageViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style TargetType="RadioButton">
@@ -14,7 +14,7 @@
                         <VisualState x:Name="Checked">
                             <VisualState.Setters>
                                 <Setter Property="TextColor"
-                                        Value="Green" />
+                                        Value="Black" />
                                 <Setter Property="Opacity"
                                         Value="1" />
                             </VisualState.Setters>
@@ -22,7 +22,7 @@
                         <VisualState x:Name="Unchecked">
                             <VisualState.Setters>
                                 <Setter Property="TextColor"
-                                        Value="Red" />
+                                        Value="Grey" />
                                 <Setter Property="Opacity"
                                         Value="0.5" />
                             </VisualState.Setters>
@@ -37,7 +37,7 @@
         RowDefinitions="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"
         ColumnDefinitions="*">
         <CollectionView
-            ItemsSource="{Binding CartItems}"
+            ItemsSource="{Binding CartViewModel.CartItems}"
             Grid.Row="0" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -61,7 +61,7 @@
                                        HorizontalTextAlignment="Center"
                                            Padding="0"
                                        Margin="0"/>
-                                <Label Text="{Binding details}"
+                                <Label Text="{Binding Details}"
                                        FontSize="14"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"
@@ -116,12 +116,10 @@
                        Padding="0"/>
                 <Picker x:Name="picker"
                         Title="Select payment"
-                        Margin="0">
-                    <Picker.Items>
-                        <x:String>DCB</x:String>
-                        <x:String>Meal T</x:String>
-                        <x:String>Debit/Credit Card</x:String>
-                    </Picker.Items>
+                        Margin="0"
+                        SelectedItem="{Binding CartViewModel.SelectedPayment}"
+                        ItemsSource="{Binding CartViewModel.PaymentOptions}"
+                        SelectedIndexChanged="OnSelectedIndexChanged">
                 </Picker>
 
             </HorizontalStackLayout>
@@ -137,7 +135,8 @@
                        Padding="0"/>
                 <Entry Keyboard="Numeric"
                        Placeholder="999-999-9999"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,0,0"
+                       PropertyChanged="PhoneNumberPropertyChanged"/>
             </HorizontalStackLayout>
 
         </Frame>
@@ -145,8 +144,8 @@
             <HorizontalStackLayout 
                    HorizontalOptions="End">
                 <Label Text="Total : "/>
-                <Label x:Name="totalLbl"
-                   Text="{Binding Total}"/>
+                <Label 
+                   Text="{Binding CartViewModel.Total}"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
         <Frame Grid.Row="4"
@@ -159,7 +158,8 @@
                        FontAttributes="Bold"
                        Padding="0"/>
                 <TimePicker Margin="0"
-                            HorizontalOptions="Center">
+                            HorizontalOptions="Center"
+                            PropertyChanged="OnTimeSelected" >
                     
                 </TimePicker>
             </HorizontalStackLayout>
@@ -178,7 +178,7 @@
                 <RadioButton Content="Pickup"
                              IsChecked="True"
                              CheckedChanged="RadioButtonCheckedChanged"
-                             x:Name="Pickup"/>
+                             x:Name="Pickup"   />
                 <RadioButton Content="Delivery"
                              CheckedChanged="RadioButtonCheckedChanged"/>
                 
@@ -200,8 +200,7 @@
             </HorizontalStackLayout>
         </Frame>
         <Border Grid.Row="6"
-               Padding="0"
-               >
+               Padding="0" >
 
             <Grid RowDefinitions="*"
                   ColumnDefinitions=".1*,.3*">
@@ -212,19 +211,9 @@
                         FontAttributes="Bold"
                         Padding="0"/>
                 <Editor Grid.Column="1"
-                        IsReadOnly="True">
-                    <Editor.Triggers>
-                        <DataTrigger TargetType="Editor"
-                                    Binding="{Binding Source={x:Reference Pickup}}"
-                                    Value="1">
-                            <Setter Property="IsReadOnly" Value="False"/>
-                        </DataTrigger>
-                        <DataTrigger TargetType="Editor"
-                                    Binding="{Binding Source={x:Reference Pickup}}"
-                                    Value="0">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                        </DataTrigger>
-                    </Editor.Triggers>
+                        IsReadOnly="True"
+                        x:Name="Instructions"
+                        PropertyChanged="DeliveryInstructionsPropertyChanged">
                 </Editor>
                 
             </Grid>
@@ -232,7 +221,8 @@
         </Border>
         <Button Text="Checkout"
                 CornerRadius="0"
-                Grid.Row="7"/>
+                Grid.Row="7"
+                Clicked="CheckoutButtonClicked"/>
     </Grid>
 
 

@@ -5,14 +5,23 @@ namespace BazToGo.Models
     public partial class CartItem : ObservableObject
     {
         public Guid Id { get; set; }
-        public int ProductId {  get; set; }
-        public string Name { get; set; }
-        public string details {  get; set; }
-        public double Price { get; set; }
-        public string Image { get; set; }
+        [ObservableProperty]
+        public int _productId;
+
+        [ObservableProperty]
+        public string _name;
+
+        [ObservableProperty]
+        public string _details;
+
+        [ObservableProperty]
+        public double _price;
+
+        [ObservableProperty]
+        public string _image;
 
         [ObservableProperty, NotifyPropertyChangedFor(nameof(Amount))]
-        private int _quantity;
+        public int _quantity;
 
         public double Amount => Price * Quantity;
     }

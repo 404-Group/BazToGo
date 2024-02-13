@@ -23,8 +23,8 @@ namespace BazToGo
         }
         void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string previous = (e.PreviousSelection.FirstOrDefault() as Items)?.Name;
-            _ = (e.CurrentSelection.FirstOrDefault() as Items)?.Name;
+            var previous = (e.PreviousSelection.FirstOrDefault() as Items);
+            _ = (e.CurrentSelection.FirstOrDefault() as Items);
         }
 
         public static IList<Items> ItemsSource { get; internal set; }

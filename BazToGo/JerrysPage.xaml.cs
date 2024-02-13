@@ -22,10 +22,11 @@ namespace BazToGo
             set => SetValue(ProductProperty, value);
         }
         void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        string previous = (e.PreviousSelection.FirstOrDefault() as Items)?.Name;
-        _ = (e.CurrentSelection.FirstOrDefault() as Items)?.Name;
-    }
+        {
+            Items product = (e.CurrentSelection.FirstOrDefault() as Items);
+        int previous = (e.PreviousSelection.FirstOrDefault() as Items).Id;
+        _ = (e.CurrentSelection.FirstOrDefault() as Items).Id;
+        }
 
         public static IList<Items> ItemsSource { get; internal set; }
     }

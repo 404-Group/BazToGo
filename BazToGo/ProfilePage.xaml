@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BazToGo.ProfilePage"
+             xmlns:local="clr-namespace:BazToGo.ViewModels"
              Title="ProfilePage">
+    <ContentPage.BindingContext>
+        <local:ProfileViewModel/>
+    </ContentPage.BindingContext>
     <Shell.TitleView>
         <StackLayout>
             <Label  Text="Profile"
@@ -16,4 +20,29 @@
         FontSize="Medium"/>
         </StackLayout>
     </Shell.TitleView>
+    <StackLayout>
+        <Grid RowDefinitions="*,*,*"
+              ColumnDefinitions="*,*">
+            <Label Text="Name: "
+                   TextColor="Black"
+                   Grid.Column="0"
+                    Grid.Row="0"/>
+            <Label Text="{Binding Name}"
+                   Grid.Column="1"/>
+            <Label Text="DCB: "
+                   TextColor="Black"
+                   Grid.Column="0"
+                    Grid.Row="1"/>
+            <Label Text="{Binding Dcb}"
+                   Grid.Row="1"
+                    Grid.Column="1"/>
+            <Label Text="Meal Trade:"
+                   TextColor="Black"
+                   Grid.Column="0"
+                    Grid.Row="2"/>
+            <Label Text="{Binding MealTrade}"
+                   Grid.Column="1"
+                    Grid.Row="2"/>
+        </Grid>
+    </StackLayout>
 </ContentPage>

@@ -23,7 +23,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <local:SlimsViewModel/>
+        <local:ProductPageViewModel/>
     </ContentPage.BindingContext>
     <Shell.TitleView>
         <StackLayout>
@@ -40,8 +40,9 @@
     </Shell.TitleView>
     <Grid>
         <CollectionView 
-         ItemsSource="{Binding ItemsList}"
-         
+         ItemsSource="{Binding SlimsItemsList}"
+         SelectionMode="Single"   
+         SelectedItem="{Binding SelectedItem}"
          ItemsLayout="VerticalGrid, 2"
          Margin="0"
      Grid.Row="1">
@@ -84,57 +85,17 @@
                              Margin="5"/>
 
                         </Grid>
-                        <Button Grid.Column="0"
-                                    Text="Add"
-                                    Style="{StaticResource AddToCartBtn}"
-                                    IsVisible="False"
-                                    Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:SlimsViewModel}}, Path=AddToCartCommand}"
-                                     CommandParameter="{Binding SelectedItem}">
-                            <Button.Triggers>
-                                <DataTrigger TargetType="Button"
-                                                             Binding="{Binding Quantity}"
-                                                             Value="0">
-                                    <Setter Property="IsVisible" Value="True"/>
-                                </DataTrigger>
-                            </Button.Triggers>
-                        </Button>
-                        <Border Grid.Column="0"
-                             IsVisible="True"
-                             StrokeShape="RoundRectangle 6"
-                             StrokeThickness="1"
-                             Stroke="#00533E">
 
-                            <Border.Triggers>
-                                <DataTrigger TargetType="Border"
-                                              Binding="{Binding Quantity}"
-                                              Value="0">
-                                    <Setter Property="IsVisible" Value="False"/>
-                                </DataTrigger>
-                            </Border.Triggers>
-
-                            <Grid ColumnDefinitions="Auto, *, Auto">
-                                <Button Grid.Column="0"
-                            Text="-"
-                            Style="{StaticResource CartBtn}"
-                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:SlimsViewModel}}, Path=RemoveFromCartCommand}"
-                            CommandParameter="{Binding SelectedItem}"
-                                        BackgroundColor="#00533E"/>
-                                <Label Grid.Column="1" 
-                                       Text="{Binding Quantity}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center"/>
-                                <Button Grid.Column="2"
-                                Text="+"
-                                Style="{StaticResource CartBtn}"
-                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:SlimsViewModel}}, Path=AddToCartCommand}"
-                            CommandParameter="{Binding SelectedItem}"
-                                        BackgroundColor="#00533E"/>
-                            </Grid>
-                        </Border>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button Grid.Column="0"
+             Text="Add"
+             Style="{StaticResource AddToCartBtn}"
+             IsVisible="True"
+             Command="{Binding Source={x:RelativeSource AncestorType={x:Type local:ProductPageViewModel}}, Path=AddToCartCommand}"
+              CommandParameter="{Binding SelectedItem}">
+        </Button>
     </Grid>
-
 </ContentPage>
