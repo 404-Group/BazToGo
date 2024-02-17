@@ -130,7 +130,7 @@ namespace BazToGo.ViewModels
                     outputStream.Close();
                 }
             Console.WriteLine(targetFilePath);
-           // ReadOrder(targetFilePath);
+            ReadOrder(targetFilePath);
             }
         public void ReadOrder(string docPath)
         {

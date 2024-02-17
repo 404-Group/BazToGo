@@ -74,12 +74,20 @@
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"
                                    Grid.Column="2"/>
-                            <Label Text="{Binding Quantity}"
+                            <Label
                                    FontSize="18" 
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"
-                                   Grid.Column="3"/>
-                            <Label Text="{Binding Amount}"
+                                   Grid.Column="3">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="x"/>
+                                        <Span Text="{Binding Quantity}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                
+                            </Label>
+                                <Label Text="{Binding Amount}"
                                    FontSize="18"  
                                    VerticalOptions="Center"
                                    HorizontalOptions="End"

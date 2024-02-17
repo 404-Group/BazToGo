@@ -7,19 +7,17 @@
     <ContentPage.BindingContext>
         <local:ProductPageViewModel/>
     </ContentPage.BindingContext>
-    <Grid
-      RowDefinitions="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"
-      ColumnDefinitions="*">
-        <CollectionView
+    <CollectionView
         ItemsSource="{Binding CartViewModel.CartItems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame CornerRadius="0">
-                        <Grid>
-                            <Grid RowDefinitions="*,*"
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame CornerRadius="0">
+                    <Grid RowDefinitions="*"
+                              ColumnDefinitions=".4*,.1*,.1*,.4*">
+                        <Grid RowDefinitions="1.5*,*"
                            ColumnDefinitions="*"
-                           Grid.Column="1">
-                                <Label Text="{Binding Name}"
+                           Grid.Column="0">
+                            <Label Text="{Binding Name}"
                             
                                     FontSize="18"
                                 VerticalOptions="Center"
@@ -27,36 +25,35 @@
                                 HorizontalTextAlignment="Center"
                                     Padding="0"
                                 Margin="0"/>
-                                <Label Text="{Binding Details}"
+                            <Label Text="{Binding Details}"
                                 FontSize="14"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"
                                 Padding="0"
                                 Margin="0"
                                 Grid.Row="1"/>
-                            </Grid>
-                            <Label Text="{Binding Price}" 
+                        </Grid>
+                        <Label Text="{Binding Price}" 
                             FontSize="18" 
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             Grid.Column="2"/>
-                            <Label Text="{Binding Quantity}"
+                        <Label Text="{Binding Quantity}"
                             FontSize="18" 
                             VerticalOptions="Center"
                             HorizontalOptions="Center"
                             Grid.Column="3"/>
-                            <Label Text="{Binding Amount}"
+                        <Label Text="{Binding Amount}"
                             FontSize="18"  
                             VerticalOptions="Center"
                             HorizontalOptions="End"
                             Grid.Column="4"/>
 
 
-                        </Grid>
-                    </Frame>
+                    </Grid>
+                </Frame>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

@@ -10,6 +10,18 @@ using System.Xml.Linq;
 
 namespace BazToGo.ViewModels
 {
+    public class Popup : Page
+    {
+        public ProductPageViewModel viewModel = new ProductPageViewModel();
+
+        public async void popup() {
+            if (viewModel.SelectedItem == null) {
+                await DisplayAlert("Alert","Please select an item from the menu.","OK");
+            }
+        }
+
+
+    }
     public class ProductCartItemChangeEventArgs : EventArgs
     {
         public string Name { get; set; }
@@ -26,7 +38,7 @@ namespace BazToGo.ViewModels
 
     public partial class ProductPageViewModel:ObservableObject
     {
-        
+       // public Popup Popup = new Popup();   
         public static ObservableCollection<Items> items = new ObservableCollection<Items>();
 
         public ObservableCollection<CartItem> CartList = new ObservableCollection<CartItem>();
@@ -59,22 +71,31 @@ namespace BazToGo.ViewModels
         private void RemoveFromCart(Items item) => UpdateCart(item, -1);
         private void UpdateCart(Items product, int count)
         {
-            product = SelectedItem;
-            var item = ItemsList.FirstOrDefault(p => p.Id == product.Id);
-            if (item != null)
+            
+            if (SelectedItem == null)
             {
-                item.Quantity += count;
-                if (count == -1)
+                //Popup.popup();
+            }
+            else
+            {
+                product = SelectedItem;
+                var item = ItemsList.FirstOrDefault(p => p.Id == product.Id);
+                if (item != null)
                 {
-                    CartViewModel.RemoveFromCartCommand.Execute(item.Id);
-                }
-                else {
-                    CartViewModel.AddToCartCommand.Execute(item);
-                }
+                    item.Quantity += count;
+                    if (count == -1)
+                    {
+                        CartViewModel.RemoveFromCartCommand.Execute(item.Id);
+                    }
+                    else
+                    {
+                        CartViewModel.AddToCartCommand.Execute(item);
+                    }
 
-                CartCount = CartViewModel.Count;
-                Total = CartViewModel.Total;
-                Console.WriteLine(Total);
+                    CartCount = CartViewModel.Count;
+                    Total = CartViewModel.Total;
+                    Console.WriteLine(Total);
+                }
             }
         }
         public ProductPageViewModel() {

@@ -5,13 +5,14 @@ using System.Windows.Input;
 
 namespace BazToGo
 {
+    
     public partial class JerrysPage : ContentPage
     {
         public static readonly BindableProperty ProductProperty =
             BindableProperty.Create(nameof(Items), typeof(IEnumerable<Items>), typeof(Items), Enumerable.Empty<Items>());
         public JerrysPage()    
         {
-           
+          
             InitializeComponent();
         }
         
