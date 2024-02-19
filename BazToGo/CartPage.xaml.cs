@@ -2,6 +2,7 @@
 using BazToGo.ViewModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Plugin.LocalNotification;
 
 namespace BazToGo
 {
@@ -50,8 +51,17 @@ namespace BazToGo
         }
         public async void CheckoutButtonClicked(object sender, EventArgs args)
         {
-            viewModel.CartViewModel.receipt("receipt.txt");
+            viewModel.CartViewModel.Receipt("receipt.txt");
             await Shell.Current.GoToAsync(nameof(CheckoutPage));
+            var request = new NotificationRequest
+            {
+                NotificationId = 1,
+                Title = "Order Placed.",
+                Subtitle = "Order Placed.",
+                CategoryType = NotificationCategoryType.Status
+            };
+
+            await LocalNotificationCenter.Current.Show(request);
         }
         public static ObservableCollection<Items> ItemsSource { get; internal set; }
 

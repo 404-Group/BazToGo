@@ -94,7 +94,7 @@ namespace BazToGo.ViewModels
             PaymentOptions.Add("Debit/Credit");
 
         }
-        public void receipt(string targetFileName){
+        public void Receipt(string targetFileName){
 
                 string testPath = FileSystem.Current.AppDataDirectory;
                 string targetFilePath = System.IO.Path.Combine(testPath, targetFileName);
@@ -130,7 +130,7 @@ namespace BazToGo.ViewModels
                     outputStream.Close();
                 }
             Console.WriteLine(targetFilePath);
-            ReadOrder(targetFilePath);
+            //ReadOrder(targetFilePath);
             }
         public void ReadOrder(string docPath)
         {

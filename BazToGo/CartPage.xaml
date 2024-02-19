@@ -36,6 +36,20 @@
     <Grid
         RowDefinitions="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"
         ColumnDefinitions="*">
+        <Grid.Triggers>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference delivery},Path=IsChecked}"
+                         Value="True">
+                <Setter Property="RowDefinitions"
+                        Value="400,.1*,.12*,.12*,.12*,.12*,.35*"/>
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                          Binding="{Binding Source={x:Reference delivery},Path=IsChecked}"
+                          Value="False">
+                <Setter Property="RowDefinitions"
+                        Value="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"/>
+            </DataTrigger>
+        </Grid.Triggers>
         <CollectionView
             ItemsSource="{Binding CartViewModel.CartItems}"
             Grid.Row="0" >
@@ -186,8 +200,10 @@
                 <RadioButton Content="Pickup"
                              IsChecked="True"
                              CheckedChanged="RadioButtonCheckedChanged"
-                             x:Name="Pickup"   />
+                             >
+                </RadioButton>
                 <RadioButton Content="Delivery"
+                             x:Name="delivery"   
                              CheckedChanged="RadioButtonCheckedChanged"/>
                 
               
@@ -209,7 +225,16 @@
         </Frame>
         <Border Grid.Row="6"
                Padding="0" >
+            <Border.Triggers>
+                <DataTrigger TargetType="Border"
+                            Binding="{Binding Source={x:Reference pickup},
+                                        Path=IsChecked}"
+                             Value="True">
 
+                    <Setter Property="IsVisible"
+                            Value="False"/>
+                </DataTrigger>
+            </Border.Triggers>
             <Grid RowDefinitions="*"
                   ColumnDefinitions=".1*,.3*">
                 <Label Text="Delivery Instructions: "
@@ -219,9 +244,19 @@
                         FontAttributes="Bold"
                         Padding="0"/>
                 <Editor Grid.Column="1"
-                        IsReadOnly="True"
-                        x:Name="Instructions"
+                        
+                        x:Name="instructions"
                         PropertyChanged="DeliveryInstructionsPropertyChanged">
+                    <Editor.Triggers>
+                        <!--<DataTrigger TargetType="Editor"
+                                     Binding="{Binding Source={x:Reference delivery},
+                                                                Path=IsChecked}"
+                                     Value="True">
+                            <Setter Property="IsVisible"
+                                    Value="True"/>
+                        </DataTrigger>-->
+
+                    </Editor.Triggers>
                 </Editor>
                 
             </Grid>
