@@ -57,6 +57,10 @@ namespace BazToGo.ViewModels
         public double _total;
         [ObservableProperty]
         private int _cartCount;
+
+        [ObservableProperty]
+        public string _orderStatus;
+        
         public static ObservableCollection<Items> ItemsList { get { return items; } }
         public ObservableCollection<Items> JerrysItemsList { get { return JerrysItems; } }
         public ObservableCollection<Items> SlimsItemsList { get { return SlimsItems; } }

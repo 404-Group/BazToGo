@@ -9,7 +9,7 @@ namespace BazToGo
     public partial class CartPage : ContentPage
     {
         private readonly ProductPageViewModel viewModel;
-
+        public OrderStatusPage orderStatus;
 
         public CartPage()
         {
@@ -52,7 +52,7 @@ namespace BazToGo
         public async void CheckoutButtonClicked(object sender, EventArgs args)
         {
             viewModel.CartViewModel.Receipt("receipt.txt");
-            await Shell.Current.GoToAsync(nameof(CheckoutPage));
+            await Shell.Current.GoToAsync(nameof(OrderStatusPage));
             var request = new NotificationRequest
             {
                 NotificationId = 1,
@@ -60,7 +60,6 @@ namespace BazToGo
                 Subtitle = "Order Placed.",
                 CategoryType = NotificationCategoryType.Status
             };
-
             await LocalNotificationCenter.Current.Show(request);
         }
         public static ObservableCollection<Items> ItemsSource { get; internal set; }

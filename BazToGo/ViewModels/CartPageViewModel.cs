@@ -4,9 +4,6 @@ using BazToGo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 
 namespace BazToGo.ViewModels
 {
@@ -21,6 +18,7 @@ namespace BazToGo.ViewModels
         //public ProductPageViewModel Products = new ProductPageViewModel();
 
         public ObservableCollection<Order> Orders = new();
+        public Order Order;
 
         [ObservableProperty]
         private Items _selectedItem;
@@ -44,7 +42,7 @@ namespace BazToGo.ViewModels
         public void AddToCart(Items product)
         {
             var item = CartItems.FirstOrDefault(p => p.ProductId == product.Id);
-            if (item != null)
+            if (item != null && item.Details==product.Details)
             {
                 item.Quantity++;
                 Count++;
@@ -59,7 +57,8 @@ namespace BazToGo.ViewModels
                     ProductId = product.Id,
                     Quantity = 1,
                     Price = product.Price,
-                    Image = product.Image
+                    Image = product.Image,
+                    Details = product.Details
                 };
                 CartItems.Add(item);
                 Count++;
@@ -92,7 +91,6 @@ namespace BazToGo.ViewModels
             PaymentOptions.Add("Meal Trade");
             PaymentOptions.Add("DCB");
             PaymentOptions.Add("Debit/Credit");
-
         }
         public void Receipt(string targetFileName){
 
@@ -130,41 +128,23 @@ namespace BazToGo.ViewModels
                     outputStream.Close();
                 }
             Console.WriteLine(targetFilePath);
-            //ReadOrder(targetFilePath);
+            ReadOrder();
             }
-        public void ReadOrder(string docPath)
+        public void ReadOrder()
         {
-            Order order = new Order();
-            using (var fileStream = File.OpenRead(docPath))
-            using (var streamReader = new StreamReader(fileStream))
+            Order = new Order();
+            for (int i = 0; i < CartItems.Count; i++) {
+                Items item = new Items();
+                item.Name = CartItems[i].Name;
+                item.Details = CartItems[i].Details;
+                item.Quantity= CartItems[i].Quantity;
+                item.Price = CartItems[i].Price;
+                Order.items.Add(item);
+            }
+            Orders.Add(Order);
+            for (int i = 0; i < CartItems.Count; i++)
             {
-                String line;
-                while ((line = streamReader.ReadLine()) != null && line.Length > 1)
-                {
-                    if (line == "Items:")
-                    {
-                        streamReader.ReadLine();
-                    }
-                    while (line != "Name: ")
-                    {
-
-                        Items item = new Items();
-                        if (!line.Contains("-"))
-                        {
-                            item.Name = line;
-                        }
-                        else {
-                            while (line.Contains('-')) {
-                                item.Details = line;
-                            }
-                        }
-                        item.Quantity = 1;
-                        order.items.Add(item);
-                    }
-
-                }
-                Orders.Add(order);
-
+                Console.WriteLine(Order.items[i].Name);
             }
         }
             private void clearCart()

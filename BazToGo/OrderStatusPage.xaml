@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BazToGo.OrderStatusPage"
+             Title="OrderStatusPage"
+             xmlns:local="clr-namespace:BazToGo.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ProductPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <local:CartPageViewModel x:Key="CartPage"/>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <StackLayout>
+            <Label  Text="Order Status"
+                TextColor="White"
+                
+                VerticalTextAlignment="Center"
+                VerticalOptions="Center"
+                HeightRequest="50"
+                Padding="0"
+                Margin="0,2,0,0"
+                FontSize="Medium"/>
+        </StackLayout>
+    </Shell.TitleView>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid RowDefinitions=".1*,.1*,.1*,*,*">
+        <Label Text="Thank you for ordering!"
+               HorizontalTextAlignment="Center"
+               Margin="0,10,0,0"
+               Grid.Row="0">
+        </Label>
+        <Label Text=" You can view your order status below."
+                HorizontalTextAlignment="Center"
+                 Margin="0,10,0,0"
+                 Grid.Row="1">
+            
+        </Label>
+        <Label x:Name="status"
+               Grid.Row="2"
+               HorizontalTextAlignment="Center"/>
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*,*,*,*"
+            Margin="0"
+            Padding="0">
+            <BoxView Grid.Column="0"
+                     CornerRadius="50"
+                     HeightRequest="50"
+                     WidthRequest="50"
+                     Color="LightGrey"
+                     x:Name="confirm">
+            </BoxView>
+            <BoxView Grid.Column="1"
+                     CornerRadius="50"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                     Color="LightGrey"
+                     x:Name="preparing">
+
+            </BoxView>
+            <BoxView Grid.Column="2"
+                     CornerRadius="50"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                     Color="LightGrey"
+                     x:Name="prepared">
+            </BoxView>
+            <BoxView Grid.Column="3"
+                     CornerRadius="50"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                     Color="LightGrey"
+                     x:Name="complete">
+            </BoxView>
+        </Grid>
+        <Button Grid.Row="4"
+                x:Name ="button"
+                HeightRequest="30"
+                WidthRequest="30"
+                VerticalOptions="End"
+                Margin="0,0,0,20"
+                Clicked="OrderStatusButtonClicked"/>
+    </Grid>
+</ContentPage>

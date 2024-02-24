@@ -39,15 +39,15 @@
         <Grid.Triggers>
             <DataTrigger TargetType="Grid"
                          Binding="{Binding Source={x:Reference delivery},Path=IsChecked}"
-                         Value="True">
+                         Value="False">
                 <Setter Property="RowDefinitions"
-                        Value="400,.1*,.12*,.12*,.12*,.12*,.35*"/>
+                        Value="480,.1*,.12*,.12*,.12*,.12*,.2*"/>
             </DataTrigger>
             <DataTrigger TargetType="Grid"
                           Binding="{Binding Source={x:Reference delivery},Path=IsChecked}"
-                          Value="False">
+                          Value="True">
                 <Setter Property="RowDefinitions"
-                        Value="400,.1*,.12*,.12*,.12*,.12*,.35*,.2*"/>
+                        Value="380,.1*,.12*,.12*,.12*,.12*,.35*,.2*"/>
             </DataTrigger>
         </Grid.Triggers>
         <CollectionView
@@ -247,16 +247,6 @@
                         
                         x:Name="instructions"
                         PropertyChanged="DeliveryInstructionsPropertyChanged">
-                    <Editor.Triggers>
-                        <!--<DataTrigger TargetType="Editor"
-                                     Binding="{Binding Source={x:Reference delivery},
-                                                                Path=IsChecked}"
-                                     Value="True">
-                            <Setter Property="IsVisible"
-                                    Value="True"/>
-                        </DataTrigger>-->
-
-                    </Editor.Triggers>
                 </Editor>
                 
             </Grid>

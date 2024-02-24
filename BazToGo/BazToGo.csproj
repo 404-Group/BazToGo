@@ -64,6 +64,9 @@
 	  <Compile Update="CartPage.xaml.cs">
 	    <DependentUpon>CartPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="OrderStatusPage.xaml.cs">
+	    <DependentUpon>OrderStatusPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\CartControl.xaml.cs">
 	    <DependentUpon>CartControl.xaml</DependentUpon>
 	  </Compile>
@@ -91,7 +94,10 @@
 	  <MauiXaml Update="CartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CheckoutPage.xaml">
+	  <MauiXaml Update="CompletedOrderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="OrderStatusPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\CartControl.xaml">
