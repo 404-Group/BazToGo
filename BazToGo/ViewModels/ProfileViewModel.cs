@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using BazToGo.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace BazToGo.ViewModels
     public partial class ProfileViewModel:ObservableObject
     {
         [ObservableProperty]
-        public string _name;
+        public string _firstName = "Guest";
+        [ObservableProperty]
+        public string _lastName = "";
         [ObservableProperty]
         public double _dcb;
         [ObservableProperty]
@@ -18,10 +21,7 @@ namespace BazToGo.ViewModels
 
         public ProfileViewModel()
         {
-            Name = "John Doe";
-            Dcb = 200;
-            MealTrade = 10;
-                
         }
+
     }
 }

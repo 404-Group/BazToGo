@@ -10,51 +10,57 @@
     </ContentPage.BindingContext>
     <Grid RowDefinitions=".5*,.1*,*,.1*">
         <VerticalStackLayout 
-            Margin="0,20,0,0">
+            Margin="0,20,0,0"
+                Grid.Row="0">
             <Label 
         Text="Your order has been completed!"
         VerticalOptions="Center" 
-        HorizontalOptions="Center" 
-                Grid.Row="0"/>
+        HorizontalOptions="Center" />
             <Label Text="You can review the completed order below."
                    VerticalOptions="Center" 
                     HorizontalOptions="Center"/>
         </VerticalStackLayout>
-        <Grid RowDefinitions="*"
+        <Border Grid.Row="0"
+                VerticalOptions="Center"
+                Padding="0,10">
+            <Grid RowDefinitions="*"
             ColumnDefinitions=".3*,.1*,.1*,.43*"
               Padding="0"
               Grid.Row="1"
-               VerticalOptions="Center">
-            <Label FontSize="14"
+               VerticalOptions="Center"
+              Margin="0">
+                <Label FontSize="16"
                    Text="Item"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
                     Padding="0"
                     Margin="30,0,0,0"/>
-            <Label Text="Price"
-                        FontSize="14" 
+                <Label Text="Price"
+                        FontSize="16" 
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         Grid.Column="2"
                          Margin="0"/>
-            <Label Text="Quantity"
+                <Label Text="Quantity"
                     FontSize="14" 
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Grid.Column="3"
                      Margin="10,0,100,0"/>
-            <Label Text="Total"
+                <Label Text="Total"
                         FontSize="16"  
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         Grid.Column="4"
                                Margin="60,0,10,0"/>
-        </Grid>
+            </Grid>
+        </Border>
         <CollectionView
               ItemsSource="{Binding CartViewModel.CartItems}"
-             Grid.Row="2"
-             VerticalOptions="Start" >
+             Grid.Row="1"
+             VerticalOptions="Center" 
+            Margin="0,-150,0,0">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="*"
@@ -96,7 +102,7 @@
                                     <Span Text="{Binding Quantity}"/>
                                 </FormattedString>
                             </Label.FormattedText>
-                            </Label>
+                        </Label>
                         <Label Text="{Binding Amount}"
                         FontSize="16"  
                         VerticalOptions="Center"

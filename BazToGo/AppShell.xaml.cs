@@ -13,6 +13,7 @@
             Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
             Routing.RegisterRoute(nameof(OrderStatusPage), typeof(OrderStatusPage)); 
             Routing.RegisterRoute(nameof(CompletedOrderPage), typeof(CompletedOrderPage));
+            //Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             InitializeComponent();
         }
     }

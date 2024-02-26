@@ -49,6 +49,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="LoginPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="LoginPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\burger.png" />
 	</ItemGroup>
 

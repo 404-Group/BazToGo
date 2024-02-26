@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BazToGo.ProfilePage"
+             x:Class="BazToGo.LoginPage"
              xmlns:local="clr-namespace:BazToGo.ViewModels"
-             Title="ProfilePage">
+             Title="LoginPage">
     <ContentPage.BindingContext>
         <local:ProfileViewModel/>
     </ContentPage.BindingContext>
@@ -20,29 +20,28 @@
         FontSize="Medium"/>
         </StackLayout>
     </Shell.TitleView>
+
     <StackLayout>
         <Grid RowDefinitions="*,*,*"
               ColumnDefinitions="*,*">
-            <Label Text="Name: "
-                   TextColor="Black"
-                   Grid.Column="0"
-                    Grid.Row="0"/>
-            <Label Text="{Binding FirstName}"
-                   Grid.Column="1"/>
-            <Label Text="DCB: "
-                   TextColor="Black"
-                   Grid.Column="0"
-                    Grid.Row="1"/>
-            <Label Text="{Binding Dcb}"
+            <Label Text="Enter email address: "
+                   />
+            <Entry Grid.Column="1"
+                   x:Name="email"/>
+            <Label Text="Enter Password: "
+                   Grid.Row="1"/>
+            <Entry Grid.Column="1"
                    Grid.Row="1"
-                    Grid.Column="1"/>
-            <Label Text="Meal Trade:"
-                   TextColor="Black"
-                   Grid.Column="0"
-                    Grid.Row="2"/>
-            <Label Text="{Binding MealTrade}"
-                   Grid.Column="1"
-                    Grid.Row="2"/>
+                   x:Name="password"
+                   IsPassword="True"/>
+            <Button Text="Login"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Margin="0,20"/>
         </Grid>
+        <Button VerticalOptions="End"
+                Text="Continue as guest."
+                WidthRequest="170"
+                Margin="0,30"/>
     </StackLayout>
 </ContentPage>

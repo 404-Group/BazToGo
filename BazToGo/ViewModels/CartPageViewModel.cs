@@ -110,7 +110,7 @@ namespace BazToGo.ViewModels
                     writer.WriteLine(CartItems[i].Quantity);
                     }
                     writer.WriteLine("Name:");
-                    writer.WriteLine(profile.Name);
+                    writer.WriteLine("Guest");
                     writer.WriteLine("Payment:");
                     writer.WriteLine(SelectedPayment);
                     writer.WriteLine("Phone Number:");

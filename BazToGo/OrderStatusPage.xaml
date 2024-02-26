@@ -41,25 +41,29 @@
         </Label>
         <Label x:Name="status"
                Grid.Row="2"
-               HorizontalTextAlignment="Center"/>
+               HorizontalTextAlignment="Center"
+               VerticalOptions="End"
+               Margin="0,0,0,0"/>
         <Grid
             Grid.Row="3"
             ColumnDefinitions="*,*,*,*"
-            Margin="0"
+            Margin="0,30,0,0"
             Padding="0">
             <BoxView Grid.Column="0"
                      CornerRadius="50"
                      HeightRequest="50"
                      WidthRequest="50"
                      Color="LightGrey"
-                     x:Name="confirm">
+                     x:Name="confirm"
+                     VerticalOptions="Start">
             </BoxView>
             <BoxView Grid.Column="1"
                      CornerRadius="50"
                     HeightRequest="50"
                     WidthRequest="50"
                      Color="LightGrey"
-                     x:Name="preparing">
+                     x:Name="preparing"
+                     VerticalOptions="Start">
 
             </BoxView>
             <BoxView Grid.Column="2"
@@ -67,14 +71,16 @@
                     HeightRequest="50"
                     WidthRequest="50"
                      Color="LightGrey"
-                     x:Name="prepared">
+                     x:Name="prepared"
+                     VerticalOptions="Start">
             </BoxView>
             <BoxView Grid.Column="3"
                      CornerRadius="50"
                     HeightRequest="50"
                     WidthRequest="50"
                      Color="LightGrey"
-                     x:Name="complete">
+                     x:Name="complete"
+                     VerticalOptions="Start">
             </BoxView>
         </Grid>
         <Button Grid.Row="4"
