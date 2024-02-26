@@ -17,7 +17,8 @@
     </Shell.TitleView>
     <VerticalStackLayout>
         <Label 
-            Text="Where are you headed to?"
+            Text="Search for Orders:"
+            FontSize="Large"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Picker
@@ -34,5 +35,10 @@
                 </x:Array>
             </Picker.ItemsSource>
         </Picker>
+        <Label 
+            Text="Current Order"
+            FontSize="Large"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
