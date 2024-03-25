@@ -9,12 +9,15 @@ namespace BazToGo
     public partial class CartPage : ContentPage
     {
         private readonly ProductPageViewModel viewModel;
+        private readonly LocationViewModel viewModel2;
         public OrderStatusPage orderStatus;
 
         public CartPage()
         {
             InitializeComponent();
             viewModel = new ProductPageViewModel();
+            viewModel2 = new LocationViewModel();
+            LoadLocations();
         }
         private int check = 0;
         public void RadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -61,6 +64,27 @@ namespace BazToGo
                 CategoryType = NotificationCategoryType.Status
             };
             await LocalNotificationCenter.Current.Show(request);
+        }
+        private void LoadLocations()
+        {
+            try
+            {
+                // Call the method to retrieve locations from the ViewModel
+                var locations = viewModel2.GetLocationsFromDatabase();
+
+                // Now you can use the retrieved locations as needed
+                foreach (var location in locations)
+                {
+                    // Do something with the location data
+                    Console.WriteLine($"Location ID: {location.IDLocation}, Name: {location.LocationName}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception, log or display error message
+                Console.WriteLine("Error: " + ex.Message);
+                DisplayAlert("Error", "Failed to retrieve locations. Please try again later.", "OK");
+            }
         }
         public static ObservableCollection<Items> ItemsSource { get; internal set; }
 
